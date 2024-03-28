@@ -11,7 +11,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "css":"tailwind build -i ./src/css/tailwind.css -o ./src/css/index.css --minify --watch"
+    "css": "tailwind build -i ./src/css/tailwind.css -o ./src/css/index.css --minify --watch"
   },
   "dependencies": {
     "vue": "^3.4.21",

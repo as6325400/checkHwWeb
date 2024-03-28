@@ -3,7 +3,5 @@
 </script>
 
 <template>
-  <div class="bg-red-200">
-    dwadwd
-  </div>
+  <div></div>
 </template>
