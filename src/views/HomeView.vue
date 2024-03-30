@@ -1,7 +1,10 @@
-<script setup lang="ts">
-
+<script setup>
+import ZipUpload from "../components/ZipUpload.vue";
+import Navbar from "../components/mainNav.vue";
 </script>
 
+
 <template>
-  <div></div>
+  <navbar class="mb-2"/>
+  <zip-upload />
 </template>
