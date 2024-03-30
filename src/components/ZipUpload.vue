@@ -1,20 +1,31 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
+import { FileZipOutlined } from '@ant-design/icons-vue';
+import { unzipFile } from "../function/unzip";
+import { judgeFile } from "../function/judge";
 
 // 是否上傳成功
 const isUploaded = ref(false);
 
 // 定義一個反應式參考來存儲上傳的檔案
 const uploadedFile = ref<File | null>(null);
+const uploadedFileName = ref<string>('');
 
 // 檔案選擇事件處理器
-const handleFileSelect = (event: Event) => {
+const handleFileSelect = async(event: Event) => {
   const input = event.target as HTMLInputElement;
-  console.log(input.files);
   if (!input.files?.length) {
     return;
   }
   uploadedFile.value = input.files[0];
+  console.log(input.files[0])
+  if(input.files[0].size > 1024 * 1024 * 1){
+    alert('檔案大小不能超過1MB');
+    return;
+  }
+  uploadedFileName.value = input.files[0].name;
+  const unzipfile = await unzipFile(input.files[0]);
+  judgeFile(unzipfile);
   isUploaded.value = true;
   // 這裡你可以進行更多的操作，比如讀取檔案內容或者上傳到伺服器等
 };
@@ -30,6 +41,12 @@ const handleFileSelect = (event: Event) => {
           </svg>
           <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
           <p class="text-xs text-gray-500 dark:text-gray-400">only zip</p>
+        </div>
+      </div>
+      <div v-show="isUploaded" class="w-full h-full text-center justify-center items-center flex">
+        <div>
+          <FileZipOutlined class="text-6xl mt-1"/>
+          <p class="text-xl mt-2">{{uploadedFileName}}</p>
         </div>
       </div>
       <input id="dropzone-file" type="file" class="hidden" @change="handleFileSelect" accept=".zip"/>

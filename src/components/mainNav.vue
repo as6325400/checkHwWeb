@@ -2,7 +2,7 @@
   <nav class="bg-gray-800 p-4">
     <div class="flex justify-between items-center">
       <div class="flex-shrink-0 text-white mr-6">
-        Your Logo
+        作業格式判定
       </div>
       <div class="relative" ref="dropdown">
         <button @click="toggleDropdown" class="flex items-center text-white focus:outline-none">
